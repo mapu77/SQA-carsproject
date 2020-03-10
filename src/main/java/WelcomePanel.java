@@ -42,7 +42,6 @@ public class WelcomePanel extends JPanel implements ChangeListener
 
 	/**
 	 * @param carSys link to CarSalesSystem object
-	 * @param dest panel to place components within
 	 * @param data filename of data file
 	 */
 	public WelcomePanel(CarSalesSystem carSys, String data)
@@ -97,16 +96,12 @@ public class WelcomePanel extends JPanel implements ChangeListener
 		{
 			JTabbedPane tab = (JTabbedPane)ev.getSource();
 			// the Welcome tab has just been chosen
-			if (tab.getSelectedIndex() == 0)
+			if (tab.getSelectedIndex() == 0 && carsUpdated)
 			{
-				// if the statistics is not up to date
-				if (carsUpdated)
-				{
-					// update them
-					updateStats();
-					// next time don't update the statistics, unless a car is added to the system
-					carsUpdated = false;
-				}
+				// update them
+				updateStats();
+				// next time don't update the statistics, unless a car is added to the system
+				carsUpdated = false;
 			}
 		}
 	}
@@ -125,11 +120,11 @@ public class WelcomePanel extends JPanel implements ChangeListener
 		java.io.File f = new java.io.File(file);
 		long size = f.length(); // get length of binary data file
 
-		carsLabel.setText("Total number of cars: " + String.valueOf(cars));
-		manufacturersLabel.setText("Total number of manufacturers: " + String.valueOf(manufacturers));
-		avgPriceLabel.setText("Average car price: " + String.valueOf(avgPrice));
-		avgKmLabel.setText("Average car kilometers: " + String.valueOf(avgKm));
-		avgAgeLabel.setText("Average car age: " + String.valueOf(avgAge));
+		carsLabel.setText("Total number of cars: " + cars);
+		manufacturersLabel.setText("Total number of manufacturers: " + manufacturers);
+		avgPriceLabel.setText("Average car price: " + avgPrice);
+		avgKmLabel.setText("Average car kilometers: " + avgKm);
+		avgAgeLabel.setText("Average car age: " + avgAge);
 		versionLabel.setText("Car Sales System, Version " + CarSalesSystem.APP_VERSION);
 		dataSizeLabel.setText("Size of data file: " + size + " bytes");
 	}

@@ -252,22 +252,6 @@ public class CarsCollection
 			return (result / count);
 	}
 
-	/*public Manufacturer getManufacturer(int index)
-	{
-		Manufacturer returnManufacturer;
-
-		try
-		{
-			returnManufacturer = manufacturer[index];
-		}
-		catch (Exception exp)
-		{
-			returnManufacturer = null;
-		}
-
-		return returnManufacturer;
-	}*/
-
 	/**
 	 * load entire collectoin of cars into the manufacturer object from a data file
 	 *
@@ -317,15 +301,12 @@ public class CarsCollection
 				flag = 0;
 				for (int i = 0; i < items; i++)
 				{
-					if (i + 1 < items)
+					if (i+1 < items && manufacturer[i].getManufacturerName().compareTo(manufacturer[i + 1].getManufacturerName()) > 0)
 					{
-						if (manufacturer[i].getManufacturerName().compareTo(manufacturer[i + 1].getManufacturerName()) > 0)
-						{
-							temp = manufacturer[i];
-							manufacturer[i] = manufacturer[i + 1];
-							manufacturer[i + 1] = temp;
-							flag++;
-						}
+						temp = manufacturer[i];
+						manufacturer[i] = manufacturer[i + 1];
+						manufacturer[i + 1] = temp;
+						flag++;
 					}
 				}
 			}

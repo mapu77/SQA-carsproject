@@ -154,7 +154,7 @@ public class SearchByOtherPanel extends JPanel implements ActionListener
 
 		if (priceRange[0] >= 0 && distanceRange[0] >= 0)
 		{
-			carList = carSystem.search((int)priceRange[0], (int)priceRange[1], (double)distanceRange[0], (double)distanceRange[1]);
+			carList = carSystem.search((int)priceRange[0], (int)priceRange[1], distanceRange[0], distanceRange[1]);
 		}
 
 		if (carList.length > 0)

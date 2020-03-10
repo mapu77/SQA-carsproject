@@ -106,17 +106,13 @@ public class ShowAllCarsPanel extends JPanel implements ActionListener, ChangeLi
 		{
 			JTabbedPane tab = (JTabbedPane)ev.getSource();
 			// if selected tab index is the ShowAllCarsPanel, which is this panel
-			if (tab.getSelectedIndex() == 2)
+			if (tab.getSelectedIndex() == 2 && carsUpdated)
 			{
-				// if the cars have been updated since last time
-				if (carsUpdated)
-				{
-					carList = carSystem.getAllCars();
-					if (!(carList == null))
-						carComponents.displayDetails(carList[currentIndex]);
-					// next time don't bother updating the car list unless a car is added again
-					carsUpdated = false;
-				}
+				carList = carSystem.getAllCars();
+				if (carList != null)
+					carComponents.displayDetails(carList[currentIndex]);
+				// next time don't bother updating the car list unless a car is added again
+				carsUpdated = false;
 			}
 		}
 	}

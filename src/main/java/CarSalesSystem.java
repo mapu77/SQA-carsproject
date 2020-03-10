@@ -3,6 +3,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Vector;
 
 import static java.awt.Font.BOLD;
@@ -127,7 +128,6 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 			System.exit(0);
 		}
 		// empty cars.dat file, this error should be ignored
-		catch (java.io.EOFException exp){}
 		catch (java.io.IOException exp)
 		{
 			System.out.println("The data file, 'cars.dat' is possibly corrupted. Please delete it and create a new empty data file named cars.dat");
@@ -218,7 +218,7 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 	 */
 	public void addCarUpdateListener(Object listener)
 	{
-		if (!(listener == null))
+		if (listener != null)
 			registeredListeners.add(listener);
 	}
 
@@ -486,8 +486,9 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 			catch (IllegalAccessException exp)
 			{
 				System.out.println("Warning, the 'public carUpdated(CarEvent)' method couldn't be called for unknown reasons, You will not receive any car update events");
+			} catch (InvocationTargetException e) {
+				System.out.println("Warning, the 'public invoke(Object)' method couldn't be called for unknown reasons, You will not register carsUpdated event");
 			}
-			catch (Exception exp){}
 		}
 	}
 
