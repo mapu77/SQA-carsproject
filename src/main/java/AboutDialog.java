@@ -1,6 +1,12 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import static javax.swing.JLabel.CENTER;
+
 /**
  * A simple about dialog.
  * @
@@ -43,8 +49,8 @@ public class AboutDialog extends JDialog implements ActionListener
 		c.setLayout(new GridLayout(3, 1));
 		setTitle(title);
 		buttonPanel.add(okButton);
-		c.add(new JLabel("Cars Sales System by Adam Black", JLabel.CENTER));
-		c.add(new JLabel("SD2, Assignment 2", JLabel.CENTER));
+		c.add(new JLabel("Cars Sales System by Adam Black", CENTER));
+		c.add(new JLabel("SD2, Assignment 2", CENTER));
 		c.add(buttonPanel);
 		okButton.addActionListener(this);
 	}

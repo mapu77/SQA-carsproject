@@ -1,8 +1,11 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.border.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
+
+import static javax.swing.JLabel.CENTER;
+
 /**
  * A welcome dialog, which displays basic statistics about the cars in the data file
  * @
@@ -24,7 +27,7 @@ import javax.swing.border.*;
 public class WelcomePanel extends JPanel implements ChangeListener
 {
 	private CarSalesSystem carSystem;
-	private JLabel headingLabel = new JLabel("Welcome to the Car Sales System", JLabel.CENTER);
+	private JLabel headingLabel = new JLabel("Welcome to the Car Sales System", CENTER);
 	private JLabel carsLabel = new JLabel();
 	private JLabel manufacturersLabel = new JLabel();
 	private JLabel avgPriceLabel = new JLabel();

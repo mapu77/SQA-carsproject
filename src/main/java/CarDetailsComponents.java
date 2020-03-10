@@ -1,6 +1,13 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+
+import static java.awt.GridBagConstraints.RELATIVE;
+import static java.awt.GridBagConstraints.WEST;
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
+
 /**
  * This class contais the group of text fields representing the cars information visually
  * inside a panel.
@@ -63,7 +70,7 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
 
 		manufacturerLabel.setFont(new Font(currentFont, Font.BOLD, 12));
         gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.anchor = WEST;
         gridBagConstraints.insets = currentInsets;
         compPanel.add(manufacturerLabel, gridBagConstraints);
 
@@ -71,7 +78,7 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.anchor = WEST;
         gridBagConstraints.insets = currentInsets;
         compPanel.add(yearLabel, gridBagConstraints);
 
@@ -79,7 +86,7 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.anchor = WEST;
         gridBagConstraints.insets = currentInsets;
         compPanel.add(modelLabel, gridBagConstraints);
 
@@ -87,7 +94,7 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.anchor = WEST;
         gridBagConstraints.insets = currentInsets;
         compPanel.add(priceLabel, gridBagConstraints);
 
@@ -95,7 +102,7 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.anchor = WEST;
         gridBagConstraints.insets = currentInsets;
         compPanel.add(kmLabel, gridBagConstraints);
 
@@ -103,56 +110,55 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.anchor = WEST;
         gridBagConstraints.insets = currentInsets;
         compPanel.add(infoLabel, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridwidth = GridBagConstraints.RELATIVE;
-		gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.gridwidth = RELATIVE;
+		gridBagConstraints.anchor = WEST;
         gridBagConstraints.weightx = 1.0;
         compPanel.add(manufacturerTextField, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = GridBagConstraints.RELATIVE;
-		gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.gridwidth = RELATIVE;
+		gridBagConstraints.anchor = WEST;
         gridBagConstraints.weightx = 1.0;
         compPanel.add(yearTextField, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = GridBagConstraints.RELATIVE;
-		gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.gridwidth = RELATIVE;
+		gridBagConstraints.anchor = WEST;
         gridBagConstraints.weightx = 1.0;
         compPanel.add(modelTextField, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = GridBagConstraints.RELATIVE;
-		gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.gridwidth = RELATIVE;
+		gridBagConstraints.anchor = WEST;
         gridBagConstraints.weightx = 1.0;
         compPanel.add(priceTextField, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = GridBagConstraints.RELATIVE;
-		gridBagConstraints.anchor = gridBagConstraints.WEST;
+        gridBagConstraints.gridwidth = RELATIVE;
+		gridBagConstraints.anchor = WEST;
         gridBagConstraints.weightx = 1.0;
         compPanel.add(kmTextField, gridBagConstraints);
 
 		infoTextArea.setLineWrap(true);
-		currentInsets = new Insets(2, 20, 0, 20);
-        gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = gridBagConstraints.WEST;
+        gridBagConstraints.anchor = WEST;
 		gridBagConstraints.weightx = 1.0;
-        compPanel.add(new JScrollPane(infoTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), gridBagConstraints);
+        compPanel.add(new JScrollPane(infoTextArea, VERTICAL_SCROLLBAR_ALWAYS, HORIZONTAL_SCROLLBAR_NEVER), gridBagConstraints);
 
 		// this listens for resize events
 		addComponentListener(this);

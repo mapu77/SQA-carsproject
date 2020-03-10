@@ -4,6 +4,13 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
+
+import static java.awt.Font.BOLD;
+import static java.awt.Font.PLAIN;
+import static javax.swing.JLabel.CENTER;
+import static javax.swing.JLabel.LEFT;
+import static javax.swing.JOptionPane.*;
+
 /**
  * This class is the main JFrame of the application, and deals with the car collection.
  * It also creates instances of the other panels (add car, view car, etc) and incorporates
@@ -84,9 +91,9 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 	private JPanel titlePanel = new JPanel(new GridLayout(2, 1));
 	private JLabel statusLabel = new JLabel();
 	private JLabel pictureLabel = new JLabel();
-	private JLabel carCoLabel = new JLabel("My Car Company", JLabel.CENTER);
-	private JLabel salesSysLabel = new JLabel("Car Sales System", JLabel.CENTER);
-	private JTabbedPane theTab = new JTabbedPane(JTabbedPane.LEFT);
+	private JLabel carCoLabel = new JLabel("My Car Company", CENTER);
+	private JLabel salesSysLabel = new JLabel("Car Sales System", CENTER);
+	private JTabbedPane theTab = new JTabbedPane(LEFT);
 	private JMenu fileMenu = new JMenu("File");
 	private JMenuItem aboutItem = new JMenuItem("About");
 	private JMenuItem exitItem = new JMenuItem("Exit");
@@ -133,8 +140,8 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 		}
 
 		String currentFont = carCoLabel.getFont().getName();
-		carCoLabel.setFont(new Font(currentFont, Font.BOLD, 26));
-		salesSysLabel.setFont(new Font(currentFont, Font.PLAIN, 16));
+		carCoLabel.setFont(new Font(currentFont, BOLD, 26));
+		salesSysLabel.setFont(new Font(currentFont, PLAIN, 16));
 
 		// create menu bar
 		JMenuBar menuBar = new JMenuBar();
@@ -244,10 +251,10 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 				}
 				catch (java.io.IOException exp)
 				{
-					int result = JOptionPane.showConfirmDialog(this, "The data file could not be written, possibly because you don't have access to this location.\nIf you chose No to retry you will lose all car data from this session.\n\nWould you like to reattempt saving the data file?", "Problem saving data", JOptionPane.YES_NO_OPTION);
+					int result = showConfirmDialog(this, "The data file could not be written, possibly because you don't have access to this location.\nIf you chose No to retry you will lose all car data from this session.\n\nWould you like to reattempt saving the data file?", "Problem saving data", YES_NO_OPTION);
 
 					// checks if user wants to reattempt saving the data file
-					if (result == JOptionPane.YES_OPTION)
+					if (result == YES_OPTION)
 						ok = false;
 					else
 						ok = true;

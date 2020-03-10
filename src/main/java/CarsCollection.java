@@ -1,7 +1,5 @@
-import java.util.*;
 import java.io.*;
-import java.awt.*;
-import javax.swing.*;
+import java.util.Vector;
 /**
  * Stores manufacturers objects, and performs searches
  * @
