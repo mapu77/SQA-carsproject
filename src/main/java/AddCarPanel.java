@@ -1,7 +1,7 @@
-import java.util.*;
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.StringTokenizer;
 /**
  * The panel used for adding cars to the CarSalesSystem
  * @
@@ -196,10 +196,8 @@ public class AddCarPanel extends JPanel implements ActionListener
 			else
 			{
 				// check if the user has typed something like 3.00, or even 3.00000
-				if ((Integer.parseInt(rem)) % (Math.pow(10, rem.length() - 1)) == 0)
+				if ((Integer.parseInt(rem)) % Math.pow(10, rem.length() - 1.0) == 0)
 					valid = true;
-				else
-					valid=false;
 			}
 		}
 		else // doesn't have a decimal place
