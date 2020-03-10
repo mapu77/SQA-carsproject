@@ -1,8 +1,9 @@
-import java.util.*;
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
+import java.util.Vector;
 /**
  * This class is the main JFrame of the application, and deals with the car collection.
  * It also creates instances of the other panels (add car, view car, etc) and incorporates
@@ -86,7 +87,6 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 	private JLabel carCoLabel = new JLabel("My Car Company", JLabel.CENTER);
 	private JLabel salesSysLabel = new JLabel("Car Sales System", JLabel.CENTER);
 	private JTabbedPane theTab = new JTabbedPane(JTabbedPane.LEFT);
-	private JMenuBar menuBar = new JMenuBar();
 	private JMenu fileMenu = new JMenu("File");
 	private JMenuItem aboutItem = new JMenuItem("About");
 	private JMenuItem exitItem = new JMenuItem("Exit");
@@ -137,6 +137,7 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 		salesSysLabel.setFont(new Font(currentFont, Font.PLAIN, 16));
 
 		// create menu bar
+		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(fileMenu);
 		fileMenu.add(aboutItem);
 		fileMenu.add(exitItem);
