@@ -266,9 +266,15 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 		System.exit(0);	//shut down jvm
 	}
 
-	public void componentHidden(ComponentEvent ev) {}
+	@Override
+	public void componentHidden(ComponentEvent ev) {
+		// No behaviour needed
+	}
 
-	public void componentMoved(ComponentEvent ev) {}
+	@Override
+	public void componentMoved(ComponentEvent ev) {
+		// No behaviour needed
+	}
 
 	/**
 	 * receives events when JFrame is resized and ensures the application doesn't get resized
@@ -291,7 +297,10 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 		}
 	}
 
-	public void componentShown(ComponentEvent ev) {}
+	@Override
+	public void componentShown(ComponentEvent ev) {
+		// No behaviour needed
+	}
 
 	/**
 	 * Converts a range string such as "50-100" or "20+" to a double array with minimum and maximum
@@ -518,6 +527,7 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 		 *
 		 * @param ev WindowEvent object
 		 */
+		@Override
 		public void windowClosing(WindowEvent ev)
 		{
 			closing();

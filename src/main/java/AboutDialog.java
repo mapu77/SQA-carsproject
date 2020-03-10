@@ -92,6 +92,7 @@ public class AboutDialog extends JDialog implements ActionListener
 		 *
 		 * @param ev WindowEvent object
 		 */
+		@Override
 		public void windowClosing(WindowEvent ev)
 		{
 			closing();

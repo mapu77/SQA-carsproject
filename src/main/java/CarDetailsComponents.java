@@ -178,9 +178,15 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
 		infoTextArea.setText("");
 	}
 
-	public void componentHidden(ComponentEvent ev) {}
+	@Override
+	public void componentHidden(ComponentEvent ev) {
+		// No behaviour needed
+	}
 
-	public void componentMoved(ComponentEvent ev) {}
+	@Override
+	public void componentMoved(ComponentEvent ev) {
+		// No behaviour needed
+	}
 
 	/**
 	 * when the details panel is resized change the length of the text boxes
@@ -207,7 +213,10 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
 		}
 	}
 
-	public void componentShown(ComponentEvent ev){}
+	@Override
+	public void componentShown(ComponentEvent ev){
+		// No behaviour needed
+	}
 
 	/**
 	 * display details about a car through the text box components
