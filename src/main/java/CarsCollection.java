@@ -277,10 +277,9 @@ public class CarsCollection
 	 */
 	public void loadCars(String file) throws IOException, ClassNotFoundException
 	{
-
-		ObjectInputStream inp = new ObjectInputStream(new FileInputStream(file));
-		manufacturer = (Manufacturer[])inp.readObject();
-		inp.close();
+		try (ObjectInputStream inp = new ObjectInputStream(new FileInputStream(file))) {
+			manufacturer = (Manufacturer[]) inp.readObject();
+		}
 	}
 
 	/**
@@ -334,10 +333,9 @@ public class CarsCollection
 			}
 			while (flag > 0);
 
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
-
-			out.writeObject(manufacturer);
-			out.close();
+			try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
+				out.writeObject(manufacturer);
+			}
 		}
 	}
 
