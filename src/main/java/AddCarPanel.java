@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.StringTokenizer;
+
+import static javax.swing.BoxLayout.Y_AXIS;
+import static javax.swing.JOptionPane.*;
+
 /**
  * The panel used for adding cars to the CarSalesSystem
  * @
@@ -21,6 +25,8 @@ import java.util.StringTokenizer;
  */
 public class AddCarPanel extends JPanel implements ActionListener
 {
+	private static final String PANEL_ERROR_TITLE = "Invalid field";
+
 	private CarSalesSystem carSystem;
 	private JLabel headingLabel = new JLabel("Add a Car");
 	private JButton resetButton = new JButton("Reset");
@@ -30,7 +36,6 @@ public class AddCarPanel extends JPanel implements ActionListener
 
 	/**
 	 * @param carSys links to a CarSalesSystem object
-	 * @param dest where the components will be placed
 	 */
 	public AddCarPanel(CarSalesSystem carSys)
 	{
@@ -43,7 +48,7 @@ public class AddCarPanel extends JPanel implements ActionListener
 		buttonPanel.add(resetButton);
 		buttonPanel.add(saveButton);
 
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new BoxLayout(this, Y_AXIS));
 
 		add(Box.createVerticalStrut(10));
 		add(headingLabel);
@@ -102,24 +107,24 @@ public class AddCarPanel extends JPanel implements ActionListener
 							valid = true;
 						}
 						else
-							JOptionPane.showMessageDialog(carSystem, "An error has occured due to incorrect \"Km Traveled\" text field data.\nThis text field must contain a number with one decimal place only.", "Invalid field", JOptionPane.ERROR_MESSAGE);
+							showMessageDialog(carSystem, "An error has occured due to incorrect \"Km Traveled\" text field data.\nThis text field must contain a number with one decimal place only.", PANEL_ERROR_TITLE, ERROR_MESSAGE);
 					}
 					else
-						JOptionPane.showMessageDialog(carSystem, "An error has occured due to incorrect \"Model\" text field data.\nThis text field must contain any string of at least two non-spaced characters.", "Invalid field", JOptionPane.ERROR_MESSAGE);
+						showMessageDialog(carSystem, "An error has occured due to incorrect \"Model\" text field data.\nThis text field must contain any string of at least two non-spaced characters.", PANEL_ERROR_TITLE, ERROR_MESSAGE);
 				}
 				else
-					JOptionPane.showMessageDialog(carSystem, "An error has occured due to incorrect \"Year\" text field data.\nThis text field must be in the form, YYYY. ie, 2007.", "Invalid field", JOptionPane.ERROR_MESSAGE);
+					showMessageDialog(carSystem, "An error has occured due to incorrect \"Year\" text field data.\nThis text field must be in the form, YYYY. ie, 2007.", PANEL_ERROR_TITLE, ERROR_MESSAGE);
 			}
 			else
-				JOptionPane.showMessageDialog(carSystem, "An error has occured due to incorrect \"Manufacturer\" text field data.\nThis text field must contain any string of at least two non-spaced characters.", "Invalid field", JOptionPane.ERROR_MESSAGE);
+				showMessageDialog(carSystem, "An error has occured due to incorrect \"Manufacturer\" text field data.\nThis text field must contain any string of at least two non-spaced characters.", PANEL_ERROR_TITLE, ERROR_MESSAGE);
 
 		}
 		/* NumberFormatException would usually be thrown if the text fields contain invalid data,
 		for example a price field containing letters.*/
 		catch (NumberFormatException exp)
 		{
-			JOptionPane.showMessageDialog(carSystem, "An unknown error has occured. Please ensure your fields meet the following requirements:\n" +
-			"The \"Year\" field must contain four numeric digits only\nThe \"Price\" field must contain a valid integer with no decimal places\nThe \"Km Traveled\" field must contain a number which can have a maximum of one decimal place", "Invalid field", JOptionPane.ERROR_MESSAGE);
+			showMessageDialog(carSystem, "An unknown error has occured. Please ensure your fields meet the following requirements:\n" +
+			"The \"Year\" field must contain four numeric digits only\nThe \"Price\" field must contain a valid integer with no decimal places\nThe \"Km Traveled\" field must contain a number which can have a maximum of one decimal place", PANEL_ERROR_TITLE, ERROR_MESSAGE);
 		}
 
 		if (valid)
@@ -137,16 +142,16 @@ public class AddCarPanel extends JPanel implements ActionListener
 			if (result == CarsCollection.NO_ERROR)
 			{
 				carSystem.setCarsUpdated();
-				JOptionPane.showMessageDialog(carSystem, "Record added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+				showMessageDialog(carSystem, "Record added.", "Confirmation", INFORMATION_MESSAGE);
 				resetButtonClicked();
 				carComponents.setFocusManufacturerTextField();
 			}
 			// for that manufacturer, the limit has been reached
 			else if (result == CarsCollection.CARS_MAXIMUM_REACHED)
-				JOptionPane.showMessageDialog(carSystem, "The maximum amount of cars for that manufacturer has been reached.\nUnfortunately you cannot add any further cars to this manufacturer", "Problem adding car", JOptionPane.WARNING_MESSAGE);
+				showMessageDialog(carSystem, "The maximum amount of cars for that manufacturer has been reached.\nUnfortunately you cannot add any further cars to this manufacturer", "Problem adding car", WARNING_MESSAGE);
 			// the car system has reached the maximum number of manufacturers allowed
 			else if (result == CarsCollection.MANUFACTURERS_MAXIMUM_REACHED)
-				JOptionPane.showMessageDialog(carSystem, "The maximum amount of manufacturers in the car system has been reached.\nUnfortunately you cannot add any further manufacturers to this system", "Problem adding car", JOptionPane.WARNING_MESSAGE);
+				showMessageDialog(carSystem, "The maximum amount of manufacturers in the car system has been reached.\nUnfortunately you cannot add any further manufacturers to this system", "Problem adding car", WARNING_MESSAGE);
 		}
 	}
 

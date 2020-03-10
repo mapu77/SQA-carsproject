@@ -359,9 +359,8 @@ public class CarsCollection
 			price = car[i].getPrice();
 			distance = car[i].getKilometers();
 
-			if (price >= minPrice && price <= maxPrice)
- 				if (distance >= minDistance && distance <= maxDistance)
-					result.add(car[i]);
+			if (price >= minPrice && price <= maxPrice && distance >= minDistance && distance <= maxDistance)
+				result.add(car[i]);
 		}
 
 		return CarSalesSystem.vectorToCar(result);
