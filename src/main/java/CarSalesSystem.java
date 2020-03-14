@@ -92,17 +92,10 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 	private boolean carsUpdated = false;
 	private Vector registeredListeners = new Vector();
 	private CarsCollection carCollection;
-	private JPanel topPanel = new JPanel(new BorderLayout());
-	private JPanel titlePanel = new JPanel(new GridLayout(2, 1));
 	private JLabel statusLabel = new JLabel();
-	private JLabel pictureLabel = new JLabel();
-	private JLabel carCoLabel = new JLabel("My Car Company", CENTER);
-	private JLabel salesSysLabel = new JLabel("Car Sales System", CENTER);
 	private JTabbedPane theTab = new JTabbedPane(LEFT);
-	private JMenu fileMenu = new JMenu("File");
 	private JMenuItem aboutItem = new JMenuItem("About");
 	private JMenuItem exitItem = new JMenuItem("Exit");
-	private WindowCloser closer = new WindowCloser();
 
 	/**
 	 * @param f existing binary file for storing/retrieving car data
@@ -111,6 +104,7 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 	{
 		super("Car Sales");
 
+		WindowCloser closer = new WindowCloser();
 		addWindowListener(closer);
 		addComponentListener(this);
 		theTab.addChangeListener(this);
@@ -143,12 +137,15 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 			System.exit(0);
 		}
 
+		JLabel carCoLabel = new JLabel("My Car Company", CENTER);
 		String currentFont = carCoLabel.getFont().getName();
 		carCoLabel.setFont(new Font(currentFont, BOLD, 26));
+		JLabel salesSysLabel = new JLabel("Car Sales System", CENTER);
 		salesSysLabel.setFont(new Font(currentFont, PLAIN, 16));
 
 		// create menu bar
 		JMenuBar menuBar = new JMenuBar();
+		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
 		fileMenu.add(aboutItem);
 		fileMenu.add(exitItem);
@@ -162,9 +159,12 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 		statusLabel.setBorder(new javax.swing.border.EtchedBorder());
 
 		// load the picture into the top panel
+		JLabel pictureLabel = new JLabel();
 		pictureLabel.setIcon(new ImageIcon("vu.png"));
+		JPanel titlePanel = new JPanel(new GridLayout(2, 1));
 		titlePanel.add(carCoLabel);
 		titlePanel.add(salesSysLabel);
+		JPanel topPanel = new JPanel(new BorderLayout());
 		topPanel.add(pictureLabel, "West");
 		topPanel.add(titlePanel, "Center");
 
@@ -258,10 +258,7 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 					int result = showConfirmDialog(this, "The data file could not be written, possibly because you don't have access to this location.\nIf you chose No to retry you will lose all car data from this session.\n\nWould you like to reattempt saving the data file?", "Problem saving data", YES_NO_OPTION);
 
 					// checks if user wants to reattempt saving the data file
-					if (result == YES_OPTION)
-						ok = false;
-					else
-						ok = true;
+					ok = result != YES_OPTION;
 				}
 			}
 			while (!ok);
@@ -382,16 +379,6 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 
 
 	/**
-	 * checks if the cars have been updated since last program launch
-	 *
-	 * @return boolean indicating whether the cars have been updated
-	 */
-	public boolean getCarsUpdated()
-	{
-		return carsUpdated;
-	}
-
-	/**
 	 * Retrieves statistics about the car collection
 	 *
 	 * @param type can be either CARS_COUNT, MANUFACTURERS_COUNT, AVERAGE_PRICE, AVERAGE_DISTANCE or
@@ -471,24 +458,18 @@ public class CarSalesSystem extends JFrame implements ActionListener, ComponentL
 	{
 		carsUpdated = true;
 
-		for (int i = 0; i < registeredListeners.size(); i++)
-		{
+		for (Object registeredListener : registeredListeners) {
 			Class[] paramType = {CarUpdateEvent.class};
 			Object[] param = {new CarUpdateEvent(this)};
 
-			try
-			{
+			try {
 				//get a reference to the method which we want to invoke to the listener
-				java.lang.reflect.Method callingMethod = registeredListeners.get(i).getClass().getMethod("carsUpdated", paramType);
+				java.lang.reflect.Method callingMethod = registeredListener.getClass().getMethod("carsUpdated", paramType);
 				//invoke the method with our parameters
-				callingMethod.invoke(registeredListeners.get(i), param);
-			}
-			catch (NoSuchMethodException exp)
-			{
-				logger.log(Level.WARNING, "'public carsUpdated(CarEvent)' method does not exist in " + registeredListeners.get(i).getClass().getName() + ". You will not receive any car update events");
-			}
-			catch (IllegalAccessException exp)
-			{
+				callingMethod.invoke(registeredListener, param);
+			} catch (NoSuchMethodException exp) {
+				logger.log(Level.WARNING, "'public carsUpdated(CarEvent)' method does not exist in " + registeredListener.getClass().getName() + ". You will not receive any car update events");
+			} catch (IllegalAccessException exp) {
 				logger.log(Level.WARNING, "the 'public carUpdated(CarEvent)' method couldn't be called for unknown reasons, You will not receive any car update events");
 			} catch (InvocationTargetException e) {
 				logger.log(Level.WARNING, "the 'public invoke(Object)' method couldn't be called for unknown reasons, You will not register carsUpdated event");
