@@ -28,31 +28,22 @@ public class SearchByOtherPanel extends JPanel implements ActionListener
 	private Car[] carList;
 	private CarSalesSystem carSystem;
 	private int currentIndex = 0;
-	private JLabel headingLabel = new JLabel("Search on Price and Distance Traveled");
-	private JLabel priceLabel = new JLabel("Price");
-	private JLabel distanceLabel = new JLabel("Distance traveled");
 	private JButton searchButton = new JButton("Search");
 	private JButton resetButton = new JButton("Reset");
 	private JButton previousButton = new JButton("Previous");
 	private JButton nextButton = new JButton("Next");
 	private JComboBox priceCombo = new JComboBox(price);
 	private JComboBox distanceCombo = new JComboBox(distance);
-	private JPanel topPanel = new JPanel();
-	private JPanel pricePanel = new JPanel();
-	private JPanel distancePanel = new JPanel();
-	private JPanel priceDistancePanel = new JPanel();
-	private JPanel searchButtonsPanel = new JPanel();
-	private JPanel navigateButtonsPanel = new JPanel();
 	private CarDetailsComponents carComponents = new CarDetailsComponents();
 
 	/**
 	 * @param carSys links to a CarSalesSystem object
-     * @param dest where the panel will be displayed on the main frame
      */
 	public SearchByOtherPanel(CarSalesSystem carSys)
 	{
 		carSystem = carSys;
 		setLayout(new BorderLayout());
+		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
 
 		previousButton.addActionListener(this);
@@ -60,18 +51,26 @@ public class SearchByOtherPanel extends JPanel implements ActionListener
 		resetButton.addActionListener(this);
 		searchButton.addActionListener(this);
 
+		JLabel priceLabel = new JLabel("Price");
+		JPanel pricePanel = new JPanel();
 		pricePanel.add(priceLabel);
 		pricePanel.add(priceCombo);
+		JLabel distanceLabel = new JLabel("Distance traveled");
+		JPanel distancePanel = new JPanel();
 		distancePanel.add(distanceLabel);
 		distancePanel.add(distanceCombo);
+		JPanel priceDistancePanel = new JPanel();
 		priceDistancePanel.add(pricePanel);
 		priceDistancePanel.add(distancePanel);
 
+		JPanel searchButtonsPanel = new JPanel();
 		searchButtonsPanel.add(searchButton);
 		searchButtonsPanel.add(resetButton);
+		JPanel navigateButtonsPanel = new JPanel();
 		navigateButtonsPanel.add(previousButton);
 		navigateButtonsPanel.add(nextButton);
 
+		JLabel headingLabel = new JLabel("Search on Price and Distance Traveled");
 		headingLabel.setAlignmentX(0.5f);
 		topPanel.add(Box.createVerticalStrut(10));
 		topPanel.add(headingLabel);

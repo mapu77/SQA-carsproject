@@ -92,24 +92,9 @@ public class Car implements java.io.Serializable
 		return year;
 	}
 
-	public void setInformation(String info)
-	{
-		information = info;
-	}
-
 	public void setKilometers(double km)
 	{
 		kilometers = km;
-	}
-
-	public void setManufacturer(String man)
-	{
-		manufacturer = man.toUpperCase();
-	}
-
-	public void setModel(String mod)
-	{
-		model = mod;
 	}
 
 	public void setPrice(int cost)

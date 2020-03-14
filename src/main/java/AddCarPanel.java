@@ -28,10 +28,8 @@ public class AddCarPanel extends JPanel implements ActionListener
 	private static final String PANEL_ERROR_TITLE = "Invalid field";
 
 	private CarSalesSystem carSystem;
-	private JLabel headingLabel = new JLabel("Add a Car");
 	private JButton resetButton = new JButton("Reset");
 	private JButton saveButton = new JButton("Save");
-	private JPanel buttonPanel = new JPanel();
 	private CarDetailsComponents carComponents = new CarDetailsComponents();
 
 	/**
@@ -43,8 +41,10 @@ public class AddCarPanel extends JPanel implements ActionListener
 
 		resetButton.addActionListener(this);
 		saveButton.addActionListener(this);
+		JLabel headingLabel = new JLabel("Add a Car");
 		headingLabel.setAlignmentX(0.5f);
 
+		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(resetButton);
 		buttonPanel.add(saveButton);
 
@@ -166,10 +166,9 @@ public class AddCarPanel extends JPanel implements ActionListener
 		boolean valid = false;
 		String[] splitted = arg.split(" "); // splits argument around spaces and creates an array
 
-		for (int i = 0; i < splitted.length; i++)
-		{
+		for (String s : splitted) {
 			// checks if the number of characters between a space is greater than 2
-			valid = (splitted[i].length() > 2);
+			valid = (s.length() > 2);
 			if (valid)
 				break;
 		}

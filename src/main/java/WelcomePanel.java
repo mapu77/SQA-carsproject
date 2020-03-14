@@ -27,7 +27,6 @@ import static javax.swing.JLabel.CENTER;
 public class WelcomePanel extends JPanel implements ChangeListener
 {
 	private CarSalesSystem carSystem;
-	private JLabel headingLabel = new JLabel("Welcome to the Car Sales System", CENTER);
 	private JLabel carsLabel = new JLabel();
 	private JLabel manufacturersLabel = new JLabel();
 	private JLabel avgPriceLabel = new JLabel();
@@ -35,8 +34,6 @@ public class WelcomePanel extends JPanel implements ChangeListener
 	private JLabel avgAgeLabel = new JLabel();
 	private JLabel versionLabel = new JLabel();
 	private JLabel dataSizeLabel = new JLabel();
-	private JPanel statsPanel = new JPanel();
-	private JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
 	private boolean carsUpdated = false;
 	private String file;
 
@@ -51,8 +48,11 @@ public class WelcomePanel extends JPanel implements ChangeListener
 		setLayout(new BorderLayout(0, 10));
 		carSys.addCarUpdateListener(this);
 
+		JPanel statsPanel = new JPanel();
 		statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
+		JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
 		centerPanel.add(statsPanel);
+		JLabel headingLabel = new JLabel("Welcome to the Car Sales System", CENTER);
 		headingLabel.setBorder(new EmptyBorder(new Insets(10, 0, 0, 0)));
 
 		updateStats();
@@ -68,19 +68,6 @@ public class WelcomePanel extends JPanel implements ChangeListener
 
 		add(headingLabel, "North");
 		add(centerPanel, "Center");
-	}
-
-	/**
-	 * this method is invoked when a car has been added to the system.
-	 *
-	 * @param ev CarUpdateEvent Object
-	 */
-	public void carsUpdated(CarUpdateEvent ev)
-	{
-		if (ev.getSource() == carSystem)
-		{
-			carsUpdated = true;
-		}
 	}
 
 	/**

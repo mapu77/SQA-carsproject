@@ -40,12 +40,6 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
  */
 public class CarDetailsComponents extends JPanel implements ComponentListener
 {
-	private JLabel manufacturerLabel = new JLabel("Manufacturer");
-	private JLabel yearLabel = new JLabel("Year");
-	private JLabel modelLabel = new JLabel("Model");
-	private JLabel priceLabel = new JLabel("Price");
-	private JLabel kmLabel = new JLabel("Km Traveled");
-	private JLabel infoLabel = new JLabel("Extra Information");
 	private JTextField manufacturerTextField = new JTextField();
 	private JTextField yearTextField = new JTextField();
 	private JTextField modelTextField = new JTextField();
@@ -53,7 +47,7 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
 	private JTextField kmTextField = new JTextField();
 	private JTextArea infoTextArea = new JTextArea(4, 0);
 
-	private final int divFactor = 27;
+	private static final int DIV_FACTOR = 27;
 
 	/**
 	 * set up a new CarDetailComponents object and return a reference to the object which is a kind
@@ -65,6 +59,7 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
 		GridBagConstraints gridBagConstraints;
 		setLayout(new BorderLayout(0, 20));
 		JPanel compPanel = new JPanel(new GridBagLayout());
+		JLabel manufacturerLabel = new JLabel("Manufacturer");
 		String currentFont = manufacturerLabel.getFont().getName();
 		currentInsets =  new Insets(0, 10, 0, 30);
 
@@ -74,7 +69,8 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
         gridBagConstraints.insets = currentInsets;
         compPanel.add(manufacturerLabel, gridBagConstraints);
 
-        yearLabel.setFont(new Font(currentFont, Font.BOLD, 12));
+		JLabel yearLabel = new JLabel("Year");
+		yearLabel.setFont(new Font(currentFont, Font.BOLD, 12));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -82,7 +78,8 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
         gridBagConstraints.insets = currentInsets;
         compPanel.add(yearLabel, gridBagConstraints);
 
-        modelLabel.setFont(new Font(currentFont, Font.BOLD, 12));
+		JLabel modelLabel = new JLabel("Model");
+		modelLabel.setFont(new Font(currentFont, Font.BOLD, 12));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -90,7 +87,8 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
         gridBagConstraints.insets = currentInsets;
         compPanel.add(modelLabel, gridBagConstraints);
 
-        priceLabel.setFont(new Font(currentFont, Font.BOLD, 12));
+		JLabel priceLabel = new JLabel("Price");
+		priceLabel.setFont(new Font(currentFont, Font.BOLD, 12));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -98,7 +96,8 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
         gridBagConstraints.insets = currentInsets;
         compPanel.add(priceLabel, gridBagConstraints);
 
-        kmLabel.setFont(new Font(currentFont, Font.BOLD, 12));
+		JLabel kmLabel = new JLabel("Km Traveled");
+		kmLabel.setFont(new Font(currentFont, Font.BOLD, 12));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -106,7 +105,8 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
         gridBagConstraints.insets = currentInsets;
         compPanel.add(kmLabel, gridBagConstraints);
 
-        infoLabel.setFont(new Font(currentFont, Font.BOLD, 12));
+		JLabel infoLabel = new JLabel("Extra Information");
+		infoLabel.setFont(new Font(currentFont, Font.BOLD, 12));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -201,14 +201,14 @@ public class CarDetailsComponents extends JPanel implements ComponentListener
 
 			if (width >= 0)
 			{
-				/** these text fields had to be resized manually. Using insets didn't work for
+				/* these text fields had to be resized manually. Using insets didn't work for
 				smaller areas of the panel. */
-				manufacturerTextField.setColumns(width / divFactor);
-				yearTextField.setColumns(width / divFactor);
-				modelTextField.setColumns(width / divFactor);
-				priceTextField.setColumns(width / divFactor);
-				kmTextField.setColumns(width / divFactor);
-				infoTextArea.setColumns((width / divFactor) + 3); // this text box is larger
+				manufacturerTextField.setColumns(width / DIV_FACTOR);
+				yearTextField.setColumns(width / DIV_FACTOR);
+				modelTextField.setColumns(width / DIV_FACTOR);
+				priceTextField.setColumns(width / DIV_FACTOR);
+				kmTextField.setColumns(width / DIV_FACTOR);
+				infoTextArea.setColumns((width / DIV_FACTOR) + 3); // this text box is larger
 			}
 		}
 	}

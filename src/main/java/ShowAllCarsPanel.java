@@ -27,16 +27,13 @@ public class ShowAllCarsPanel extends JPanel implements ActionListener, ChangeLi
 	private CarSalesSystem carSystem;
 	private Car[] carList;
 	private int currentIndex = 0;
-	private JLabel headingLabel = new JLabel("Show all makes and models");
 	private JButton previousButton = new JButton("Previous");
 	private JButton nextButton = new JButton("Next");
-	private JPanel buttonPanel = new JPanel();
 	private CarDetailsComponents carComponents = new CarDetailsComponents();
 	private boolean carsUpdated = false;
 
 	/**
 	 * @param carSys links to a CarSalesSystem object
-     * @param dest where the panel will be displayed on the main frame
      */
 	public ShowAllCarsPanel(CarSalesSystem carSys)
 	{
@@ -52,8 +49,10 @@ public class ShowAllCarsPanel extends JPanel implements ActionListener, ChangeLi
 
 		previousButton.addActionListener(this);
 		nextButton.addActionListener(this);
+		JLabel headingLabel = new JLabel("Show all makes and models");
 		headingLabel.setAlignmentX(0.5f);
 
+		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(previousButton);
 		buttonPanel.add(nextButton);
 
@@ -77,20 +76,6 @@ public class ShowAllCarsPanel extends JPanel implements ActionListener, ChangeLi
 			previousButtonClicked();
 		else if (ev.getSource() == nextButton)
 			nextButtonClicked();
-	}
-
-	/**
-	 * this method is invoked when a car has been added to the system.
-	 *
-	 * @param ev CarUpdateEvent Object
-	 */
-	public void carsUpdated(CarUpdateEvent ev)
-	{
-		if (ev.getSource() == carSystem)
-		{
-			// remember the cars have been updated
-			carsUpdated = true;
-		}
 	}
 
 	/**

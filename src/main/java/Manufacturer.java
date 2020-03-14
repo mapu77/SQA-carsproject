@@ -23,7 +23,7 @@
  */
 public class Manufacturer implements java.io.Serializable
 {
-	private String manufacturer;		//name of manufacturer
+	private String name;		//name of manufacturer
 	private Car[] car = new Car[0];		//stores information about all the cars by a manufacturer
 
 	/**
@@ -32,7 +32,7 @@ public class Manufacturer implements java.io.Serializable
 	 */
 	public Manufacturer(String nam, Car c)
 	{
-		manufacturer = nam.toUpperCase();
+		name = nam.toUpperCase();
 		addCar(c);
 	}
 
@@ -67,7 +67,7 @@ public class Manufacturer implements java.io.Serializable
 
 	public String getManufacturerName()
 	{
-		return manufacturer;
+		return name;
 	}
 
 	/**
@@ -81,16 +81,8 @@ public class Manufacturer implements java.io.Serializable
 	{
 		Car[] result = new Car[c.length + extendBy];
 
-		for (int i = 0; i < c.length; i++)
-		{
-			result[i] = c[i];
-		}
+		System.arraycopy(c, 0, result, 0, c.length);
 
 		return result;
-	}
-
-	public void setManufacturersName(String nam)
-	{
-		manufacturer = nam.toUpperCase();
 	}
 }

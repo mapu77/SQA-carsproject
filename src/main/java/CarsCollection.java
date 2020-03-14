@@ -49,20 +49,10 @@ public class CarsCollection
 	 */
 	public static final int MANUFACTURERS_MAXIMUM_REACHED = 2;
 
-	private final int maxManufacturers = 20;
-	private final int maxCars = 20;
+	private static final int MAX_MANUFACTURES = 20;
+	private static final int MAX_CARS = 20;
 
 	private Manufacturer[] manufacturer = new Manufacturer[0];
-
-	public CarsCollection(){}
-
-	/**
-	 * @param man manufacturer object to add to collection
-	 */
-	public CarsCollection(Manufacturer man)
-	{
-		addManufacturer(man);
-	}
 
 	/**
 	 * adds a car to a CarCollection and files it in an appropriate manufacturer, or creates a new
@@ -88,7 +78,7 @@ public class CarsCollection
 		// if manufacturer doesn't exist
 		if (index == -1)
 		{
-			if (manufacturer.length < maxManufacturers)
+			if (manufacturer.length < MAX_MANUFACTURES)
 			{
 				man = new Manufacturer(name, c);
 				addManufacturer(man);
@@ -98,7 +88,7 @@ public class CarsCollection
 		}
 		else
 		{
-			if (manufacturer[index].carCount() < maxCars)
+			if (manufacturer[index].carCount() < MAX_CARS)
 				manufacturer[index].addCar(c);
 			else
 				result = CARS_MAXIMUM_REACHED;

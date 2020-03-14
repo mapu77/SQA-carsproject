@@ -26,17 +26,11 @@ public class SearchByAgePanel extends JPanel implements ActionListener
 	private Car[] carList;
 	private CarSalesSystem carSystem;
 	private int currentIndex = 0;
-	private JLabel headingLabel = new JLabel("Search on age");
-	private JLabel ageLabel = new JLabel("Car Age");
 	private JButton searchButton = new JButton("Search");
 	private JButton resetButton = new JButton("Reset");
 	private JButton previousButton = new JButton("Previous");
 	private JButton nextButton = new JButton("Next");
 	private JComboBox ageCombo = new JComboBox(age);
-	private JPanel topPanel = new JPanel();
-	private JPanel agePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-	private JPanel searchButtonsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-	private JPanel navigateButtonsPanel = new JPanel();
 	private CarDetailsComponents carComponents = new CarDetailsComponents();
 
 	/**
@@ -47,6 +41,7 @@ public class SearchByAgePanel extends JPanel implements ActionListener
 	{
 		carSystem = carSys;
 		setLayout(new BorderLayout());
+		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
 
 		previousButton.addActionListener(this);
@@ -54,15 +49,20 @@ public class SearchByAgePanel extends JPanel implements ActionListener
 		resetButton.addActionListener(this);
 		searchButton.addActionListener(this);
 
+		JLabel ageLabel = new JLabel("Car Age");
+		JPanel agePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		agePanel.add(ageLabel);
 		agePanel.add(ageCombo);
+		JPanel searchButtonsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		searchButtonsPanel.add(searchButton);
 		searchButtonsPanel.add(resetButton);
+		JPanel navigateButtonsPanel = new JPanel();
 		navigateButtonsPanel.add(previousButton);
 		navigateButtonsPanel.add(nextButton);
 		agePanel.setBorder(new javax.swing.border.EmptyBorder(new Insets(0, 5, 0, 0)));
 		searchButtonsPanel.setBorder(new javax.swing.border.EmptyBorder(new Insets(0, 5, 0, 0)));
 
+		JLabel headingLabel = new JLabel("Search on age");
 		headingLabel.setAlignmentX(0.5f);
 
 		topPanel.add(Box.createVerticalStrut(10));

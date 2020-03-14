@@ -30,8 +30,7 @@ import static javax.swing.JLabel.CENTER;
 public class AboutDialog extends JDialog implements ActionListener
 {
 	private JButton okButton = new JButton("OK");
-	private JPanel buttonPanel = new JPanel();
-	private WindowCloser closer = new WindowCloser();
+	private transient WindowCloser closer = new WindowCloser();
 
 	/**
 	 * @param parent a parent JFrame to place the dialog on top of
@@ -48,6 +47,7 @@ public class AboutDialog extends JDialog implements ActionListener
 		addWindowListener(closer);
 		c.setLayout(new GridLayout(3, 1));
 		setTitle(title);
+		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(okButton);
 		c.add(new JLabel("Cars Sales System by Adam Black", CENTER));
 		c.add(new JLabel("SD2, Assignment 2", CENTER));
