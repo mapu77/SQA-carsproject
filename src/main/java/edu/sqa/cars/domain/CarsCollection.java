@@ -121,8 +121,7 @@ public class CarsCollection
 	{
 		int count = 0;
 
-		for (int i = 0; i < manufacturer.length; i++)
-			count += manufacturer[i].carCount();
+		for (Manufacturer value : manufacturer) count += value.carCount();
 
 		return count;
 	}
@@ -146,26 +145,14 @@ public class CarsCollection
 	{
 		Vector result = new Vector();
 		Car[] car;
-		for (int i = 0; i < manufacturer.length; i++)
-		{
-			car = manufacturer[i].getAllCars();
-			for (int j = 0; j < car.length; j++)
-			{
-				result.addElement(car[j]);
+		for (Manufacturer value : manufacturer) {
+			car = value.getAllCars();
+			for (Car item : car) {
+				result.addElement(item);
 			}
 		}
 
 		return CarSalesSystem.vectorToCar(result);
-	}
-
-	/**
-	 * get manufacturers
-	 *
-	 * @return all manufacturers in the collection
-	 */
-	public Manufacturer[] getAllManufacturers()
-	{
-		return manufacturer;
 	}
 
 	/**
@@ -179,12 +166,10 @@ public class CarsCollection
 		double result = 0;
 		int count = 0;
 
-		for (int i = 0; i < manufacturer.length; i++)
-		{
-			car = manufacturer[i].getAllCars();
-			for (int j = 0; j < car.length; j++)
-			{
-				result += car[j].getAge();
+		for (Manufacturer value : manufacturer) {
+			car = value.getAllCars();
+			for (Car item : car) {
+				result += item.getAge();
 				count++;
 			}
 		}
@@ -205,12 +190,10 @@ public class CarsCollection
 		double result = 0;
 		int count = 0;
 
-		for (int i = 0; i < manufacturer.length; i++)
-		{
-			car = manufacturer[i].getAllCars();
-			for (int j = 0; j < car.length; j++)
-			{
-				result += car[j].getKilometers();
+		for (Manufacturer value : manufacturer) {
+			car = value.getAllCars();
+			for (Car item : car) {
+				result += item.getKilometers();
 				count++;
 			}
 		}
@@ -231,12 +214,10 @@ public class CarsCollection
 		double result = 0;
 		int count = 0;
 
-		for (int i = 0; i < manufacturer.length; i++)
-		{
-			car = manufacturer[i].getAllCars();
-			for (int j = 0; j < car.length; j++)
-			{
-				result += car[j].getPrice();
+		for (Manufacturer value : manufacturer) {
+			car = value.getAllCars();
+			for (Car item : car) {
+				result += item.getPrice();
 				count++;
 			}
 		}
@@ -269,10 +250,7 @@ public class CarsCollection
 	{
 		Manufacturer[] result = new Manufacturer[inArray.length + extendBy];
 
-		for (int i = 0; i < inArray.length; i++)
-		{
-			result[i] = inArray[i];
-		}
+		System.arraycopy(inArray, 0, result, 0, inArray.length);
 
 		return result;
 	}
@@ -284,7 +262,7 @@ public class CarsCollection
 	 */
 	public void saveCars(String file) throws IOException
 	{
-		int flag = 0;
+		int flag;
 		int items = manufacturer.length;
 		Manufacturer temp;
 
@@ -329,13 +307,12 @@ public class CarsCollection
 		Car[] car;
 		car = getAllCars();
 
-		for (int i = 0; i < car.length; i++)
-		{
-			price = car[i].getPrice();
-			distance = car[i].getKilometers();
+		for (Car value : car) {
+			price = value.getPrice();
+			distance = value.getKilometers();
 
 			if (price >= minPrice && price <= maxPrice && distance >= minDistance && distance <= maxDistance)
-				result.add(car[i]);
+				result.add(value);
 		}
 
 		return CarSalesSystem.vectorToCar(result);
@@ -358,21 +335,17 @@ public class CarsCollection
 		checking the condition for each loop. It does use almost double the amount of code though */
 		if (maxAge == -1)
 		{
-			for (int i = 0; i < car.length; i++)
-			{
-				if (car[i].getAge() >= minAge)
-				{
-					result.addElement(car[i]);
+			for (Car value : car) {
+				if (value.getAge() >= minAge) {
+					result.addElement(value);
 				}
 			}
 		}
 		else
 		{
-			for (int i = 0; i < car.length; i++)
-			{
-				if (car[i].getAge() >= minAge && car[i].getAge() <= maxAge)
-				{
-					result.addElement(car[i]);
+			for (Car value : car) {
+				if (value.getAge() >= minAge && value.getAge() <= maxAge) {
+					result.addElement(value);
 				}
 			}
 		}
