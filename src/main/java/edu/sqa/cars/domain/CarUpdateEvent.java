@@ -1,3 +1,5 @@
+package edu.sqa.cars.domain;
+
 /**
  * A basic event that is sent off to registered listeners
  * @

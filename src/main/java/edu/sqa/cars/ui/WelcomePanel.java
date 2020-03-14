@@ -1,3 +1,7 @@
+package edu.sqa.cars.ui;
+
+import edu.sqa.cars.main.CarSalesSystem;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;

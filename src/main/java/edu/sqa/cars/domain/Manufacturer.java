@@ -1,3 +1,5 @@
+package edu.sqa.cars.domain;
+
 /**
  * Stores and retrieves Car objects
  * @

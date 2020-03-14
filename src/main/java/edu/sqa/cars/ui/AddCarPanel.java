@@ -1,3 +1,9 @@
+package edu.sqa.cars.ui;
+
+import edu.sqa.cars.domain.Car;
+import edu.sqa.cars.domain.CarsCollection;
+import edu.sqa.cars.main.CarSalesSystem;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

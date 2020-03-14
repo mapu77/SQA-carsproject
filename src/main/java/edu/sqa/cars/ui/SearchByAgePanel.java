@@ -1,14 +1,19 @@
+package edu.sqa.cars.ui;
+
+import edu.sqa.cars.domain.Car;
+import edu.sqa.cars.main.CarSalesSystem;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /**
- * A panel used for obtaining search parameters using car price and distance travelled
+ * A panel used for obtaining search parameters using car age
  * @
  *
  * PUBLIC FEATURES:
  * // Constructors
- *    public SearchByOtherPanel(CarSalesSystem carSys, JPanel dest)
+ *    public SearchByAgePanel(CarSalesSystem carSys, JPanel dest)
  *
  * // Methods
  *    public void actionPerformed(ActionEvent ev)
@@ -19,12 +24,10 @@ import java.awt.event.ActionListener;
  * @version 1.0, 16 Oct 2004
  * @author Adam Black
  */
-public class SearchByOtherPanel extends JPanel implements ActionListener
+public class SearchByAgePanel extends JPanel implements ActionListener
 {
-	private final String[] price = {"5001-10000", "10001-15000", "15001-20000", "20001-50000",
-		"50001-100000", "100001-200000", "200001-300000", "300001+"};
-	private final String[] distance = {"0", "1-10000", "10001-20000", "20001-30000", "30001-40000",
-		"40001-50000", "50001-80000", "80001-100000", "100001-200000", "200001-300000", "300001+"};
+	private final String[] age = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+		"11-15", "16-20", "21-25", "26-30", "31+"};
 	private Car[] carList;
 	private CarSalesSystem carSystem;
 	private int currentIndex = 0;
@@ -32,14 +35,13 @@ public class SearchByOtherPanel extends JPanel implements ActionListener
 	private JButton resetButton = new JButton("Reset");
 	private JButton previousButton = new JButton("Previous");
 	private JButton nextButton = new JButton("Next");
-	private JComboBox priceCombo = new JComboBox(price);
-	private JComboBox distanceCombo = new JComboBox(distance);
+	private JComboBox ageCombo = new JComboBox(age);
 	private CarDetailsComponents carComponents = new CarDetailsComponents();
 
 	/**
 	 * @param carSys links to a CarSalesSystem object
      */
-	public SearchByOtherPanel(CarSalesSystem carSys)
+	public SearchByAgePanel(CarSalesSystem carSys)
 	{
 		carSystem = carSys;
 		setLayout(new BorderLayout());
@@ -51,31 +53,26 @@ public class SearchByOtherPanel extends JPanel implements ActionListener
 		resetButton.addActionListener(this);
 		searchButton.addActionListener(this);
 
-		JLabel priceLabel = new JLabel("Price");
-		JPanel pricePanel = new JPanel();
-		pricePanel.add(priceLabel);
-		pricePanel.add(priceCombo);
-		JLabel distanceLabel = new JLabel("Distance traveled");
-		JPanel distancePanel = new JPanel();
-		distancePanel.add(distanceLabel);
-		distancePanel.add(distanceCombo);
-		JPanel priceDistancePanel = new JPanel();
-		priceDistancePanel.add(pricePanel);
-		priceDistancePanel.add(distancePanel);
-
-		JPanel searchButtonsPanel = new JPanel();
+		JLabel ageLabel = new JLabel("Car Age");
+		JPanel agePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		agePanel.add(ageLabel);
+		agePanel.add(ageCombo);
+		JPanel searchButtonsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		searchButtonsPanel.add(searchButton);
 		searchButtonsPanel.add(resetButton);
 		JPanel navigateButtonsPanel = new JPanel();
 		navigateButtonsPanel.add(previousButton);
 		navigateButtonsPanel.add(nextButton);
+		agePanel.setBorder(new javax.swing.border.EmptyBorder(new Insets(0, 5, 0, 0)));
+		searchButtonsPanel.setBorder(new javax.swing.border.EmptyBorder(new Insets(0, 5, 0, 0)));
 
-		JLabel headingLabel = new JLabel("Search on Price and Distance Traveled");
+		JLabel headingLabel = new JLabel("Search on age");
 		headingLabel.setAlignmentX(0.5f);
+
 		topPanel.add(Box.createVerticalStrut(10));
 		topPanel.add(headingLabel);
 		topPanel.add(Box.createVerticalStrut(10));
-		topPanel.add(priceDistancePanel);
+		topPanel.add(agePanel);
 		topPanel.add(searchButtonsPanel);
 		topPanel.add(Box.createVerticalStrut(15));
 		carComponents.add(navigateButtonsPanel, "Center");
@@ -94,12 +91,12 @@ public class SearchByOtherPanel extends JPanel implements ActionListener
 	{
 		if (ev.getSource() == searchButton)
 			searchButtonClicked();
-		else if (ev.getSource() == resetButton)
-			resetButtonClicked();
 		else if (ev.getSource() == previousButton)
 			previousButtonClicked();
 		else if (ev.getSource() == nextButton)
 			nextButtonClicked();
+		else if (ev.getSource() == resetButton)
+			resetButtonClicked();
 	}
 
 	/**
@@ -138,22 +135,20 @@ public class SearchByOtherPanel extends JPanel implements ActionListener
 		currentIndex = 0;
 		carList = null;
 		carComponents.setVisible(false);
-		priceCombo.setSelectedIndex(0);
-		distanceCombo.setSelectedIndex(0);
+		ageCombo.setSelectedIndex(0);
 	}
 
 	/**
-	 * search cars based on price and distance travelled
+	 * find out search parameters, and do a search
 	 */
 	private void searchButtonClicked()
 	{
-		// convert distance and price combo box text into a range
-		double[] distanceRange = CarSalesSystem.convertToRange((String)distanceCombo.getSelectedItem());
-		double[] priceRange = CarSalesSystem.convertToRange((String)priceCombo.getSelectedItem());
+		// converts a string range to a lower and upper bounds.
+		double[] range = CarSalesSystem.convertToRange((String)ageCombo.getSelectedItem());
 
-		if (priceRange[0] >= 0 && distanceRange[0] >= 0)
+		if (range[0] >= 0)
 		{
-			carList = carSystem.search((int)priceRange[0], (int)priceRange[1], distanceRange[0], distanceRange[1]);
+			carList = carSystem.search((int)range[0], (int)range[1]);
 		}
 
 		if (carList.length > 0)

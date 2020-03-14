@@ -1,3 +1,10 @@
+package edu.sqa.cars.main;
+
+import edu.sqa.cars.domain.Car;
+import edu.sqa.cars.domain.CarUpdateEvent;
+import edu.sqa.cars.domain.CarsCollection;
+import edu.sqa.cars.ui.*;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;

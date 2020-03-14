@@ -1,3 +1,5 @@
+package edu.sqa.cars.ui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,3 +1,7 @@
+package edu.sqa.cars.ui;
+
+import edu.sqa.cars.domain.Car;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;

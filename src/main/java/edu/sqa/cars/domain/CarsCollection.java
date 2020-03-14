@@ -1,3 +1,7 @@
+package edu.sqa.cars.domain;
+
+import edu.sqa.cars.main.CarSalesSystem;
+
 import java.io.*;
 import java.util.Vector;
 /**
